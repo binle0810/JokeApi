@@ -23,7 +23,6 @@ namespace Presentation.Controllers
         }
 
         [Authorize]
-
         [HttpPost("send-favorites-all")]
         public async Task<IActionResult> SendFavoritesEmail()
         {
@@ -31,10 +30,10 @@ namespace Presentation.Controllers
             RecurringJob.AddOrUpdate<IEmailService>(
             "DailySendEmail",
            service => service.SendFavoritesEmailJob(),    
-        //   () => Console.WriteLine("recurt"),
+       
 
             Cron.Minutely)  ;
-         //   await emailService.SendFavoritesEmailJob();
+         
             return Ok("Emails sent to all users successfully.");
         }
      

@@ -146,7 +146,6 @@ namespace Infrastructure.Repositories
         {
             var existingLike = await _dbContext.UserLikeJokes
         .FirstOrDefaultAsync(ulj => ulj.UserId == userLikeJoke.UserId && ulj.JokeId == userLikeJoke.JokeId);
-
             if (existingLike != null)
             {
                 // Nếu đã like, có thể bỏ qua hoặc xử lý unlike
@@ -157,10 +156,7 @@ namespace Infrastructure.Repositories
                 _dbContext.UserLikeJokes.Remove(existingLike);
                 _logger.LogWarning("Đã like 2 lần");
                return jokeUnlike;
-            }
-           
-         
-
+            }      
             // Tìm joke tương ứng để cập nhật số lượt like
             var joke = await _dbContext.LikeJokes.FirstOrDefaultAsync(j => j.Id == userLikeJoke.JokeId);
 
@@ -173,14 +169,9 @@ namespace Infrastructure.Repositories
 
                 await _dbContext.LikeJokes.AddAsync(joke);
                 _logger.LogWarning("add new joke");
-            }
-
-          
+            }          
             joke.Like++;
-
-
             await _dbContext.UserLikeJokes.AddAsync(userLikeJoke);
-
             return joke;
         }
 
