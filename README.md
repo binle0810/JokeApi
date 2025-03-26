@@ -1,6 +1,6 @@
 Guide
 - Clone Code
-- down load PostgreSQL
+- download PostgreSQL
 - create new database "Joke" và "hangfire"
 - Open project with Visual studio, VS code,..
 - Adjust the ConnectionString(userid, password)
